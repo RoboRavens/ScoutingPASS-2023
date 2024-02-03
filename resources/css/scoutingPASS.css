@@ -13,7 +13,7 @@ html, body{
     width: 100%;
     margin: 0;
     padding: 0;
-    color: white;
+    color: #0068B3;
     background-color: black;
 }
 
@@ -21,34 +21,41 @@ html, body{
 
     font-family : -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
     text-align: center;
-    color: lime;
+    color: rgb(57, 182, 255);
     font-size: 13px;
     font-style: bold;
     letter-spacing: 1px;
     border-width: 4px;
-    border-color: white;
+    border-style: solid;
+    border-color: rgb(0, 162, 255);
+    border-radius: 25px;
+    background-color: black;
 }
 
 #postmatch_table {
 
     font-family : -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
     text-align: center;
-    color: lime;
+    color: rgb(37, 99, 235);
     font-size: 13px;
     font-style: bold;
     letter-spacing: 1px;
     border-width: 4px;
-    border-color: white;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+    border-radius: 25px;
 }
 
 #auton_table, #teleop_table {
     font-family : -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
-    color: lime;
+    color: rgb(37, 99, 235);
     font-size: 13px;
     font-style: bold;
     letter-spacing: 1px;
     border-width: 4px;
-    border-color: black;
+    border-style: solid;
+    border-color:black;
+    border-radius: 25px;
 }
 
 .button {
@@ -62,15 +69,36 @@ html, body{
 /* Style the Start button */
 
 #start_tct {
-  background-color: #4CAF50;
+  background-color: rgb(37, 99, 235);
   color: white;
   border: black;
   padding: 20px;
 }
+/* Style the Amped Normal Miss Buttons */
+#miss_amn {
+    background-color: rgb(37, 99, 235);
+    color: white;
+    border: purple;
+    padding: 10px;
+}
+#amped_amn {
+    background-color: rgb(37, 99, 235);
+    color: white;
+    border: purple;
+    padding: 5px;
+}
+#normal_amn {
+    background-color: rgb(37, 99, 235);
+    color: white;
+    border: purple;
+    padding: 5px;
+}
+
+
 
 /* Style the Reset button */
 #clear_tct {
-  background-color: #d9534f;
+  background-color: rgb(37, 99, 235);
   color: white;
   border: black;
   padding: 20px;
@@ -86,32 +114,32 @@ html, body{
 
 /* Style the Undo button */
 #undo_tct {
-  background-color: #555555;
+  background-color: rgb(37, 99, 235);
   color: white;
   border: black;
   padding: 20px;
 }
 
 #autonHeader, #teleopHeader1, #teleopHeader2{
-    color: white;
-    border-color: white;
-    border-width: 4px;
+    color: #0068B3;
+    border-color: #0068B3;
+    border-width: 1px;
 }
 
 #postmatchHeader{
-	color: white;
+	color: #0068B3;
     border-width: 4px;
-    border-color: white;
+    border-color: black;
 }
 
 #prematchHeader1, #prematchHeader2{
-    color: white;
-    border-color: white;
-    border-width: 4px;
+    background: black;
+    border-color: #0068B3;
+    border-width: 1px;
 }
 
 #qrHeader1, #qrHeader2 {
-    color: black;
+    color: #0068B3;
 }
     
 .field-image {
@@ -131,23 +159,14 @@ html, body{
     position: absolute;
     left: 0;
     top: 0;
-    color: white;
-    background-color: black;
+    color: #0068B3;
     font-family : -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
     text-align: justify;
+    background: black;
 }
 
 #prematch{
     display: table;
-}
-
-#auton{
-}
-
-#teleop{
-}
-
-#postmatch{
 }
 
 #qr-code{
@@ -158,22 +177,22 @@ h1{
     font-family: Alexis;
     text-align: center;
     border-style: groove;
-    border-color: white; 
+    border-color: rgb(0, 0, 0); 
     border-width: 2px;
     font-size: 40px;
-    padding: 10px; 
+    padding: 1px; 
     font-weight: 350;
 }
 
 #page2, #page4 {
-    color: black;
+    color: rgb(0, 0, 0);
 }
 
 h2{
     font-family: Alexis;
     text-align: center;
     font-size: 30px;
-    font-weight: 300;
+    font-weight: 100;
     font-style: italic;
 }
 
@@ -203,14 +222,14 @@ h2{
 #nextButton9, #nextButton10, .clearForm, .submitForm, #displayButton, #copyButton {
     font-family: Alexis; 
     padding: 10px;
-    background-color: lime;
+    background-color: rgb(37, 99, 235);
     text-decoration: none;
     display: inline-block;
 }
 #nextButton1{
     font-family: Alexis; 
     padding: 10px;
-    background-color: lime;
+    background-color: rgb(37, 99, 235);
     text-decoration: none;
     display: inline-block;
     color: black;
@@ -218,20 +237,20 @@ h2{
 #nextButton2{
 	 font-family: Alexis; 
     padding: 10px;
-    background-color: lime;
+    background-color: rgb(37, 99, 235);
     text-decoration: none;
     display: inline-block;
 }
 #nextButton3, #nextButton4, #nextButton5, #nextButton6, #nextButton7, #nextButton8 {
     font-family: Alexis;
-    background-color: lime; 
+    background-color: rgb(37, 99, 235); 
     padding: 10px;
     color: black;
 }
 
 .undoButton, .flipButton {
     font-family: Alexis;
-    background-color: black; 
+    background-color: rgb(37, 99, 235); 
     padding: 10px;
     color: white;
     margin-left: 20px;
@@ -239,14 +258,14 @@ h2{
 
 #prevButton7, #prevButton8, #prevButton9{
     font-family: Alexis;
-    background-color: yellow; 
+    background-color: rgb(37, 99, 235); 
     padding: 10px;
     color: black;
 }
 
 #prevButton1, #prevButton2, #prevButton3, #prevButton4, #prevButton5, #prevButton6{
     font-family: Alexis;
-    background-color: yellow; 
+    background-color: rgb(37, 99, 235); 
     padding: 10px;
     color: black;
     
@@ -261,13 +280,13 @@ h2{
 h1 .odd {
     font-family: Alexis;
     text-align: center;
-    color: #0AB4EC;
+    color: rgb(10, 180, 236);
 }
 
 h1 .even {
     font-family: Alexis;
     text-align: center;
-    color: #42B333;
+    color: rgb(37, 99, 235);
 }
 
 table {
@@ -276,12 +295,52 @@ table {
 }
 
 td {
-    padding: 10px 4px;
+    padding: 7px 4px;
 }
 
 input {
-    font-size: 16px;
+    font-size: 15px;
     font: roboto;
+	text-align: center-left;
+}
+
+
+input[type=radio] {
+	display:inline-block;
+	vertical-align: middle;
+	border: 1px solid rgb(41, 27, 163);
+	padding: 0.5em;
+	-webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+}
+
+input[type=radio]:checked {
+  background: url(data:image/gif;base64,R0lGODlhAQABAPAAAP///////yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==) no-repeat center center;
+  background-size: 15px 15px;
+}
+
+input[type=radio]:focus {
+  outline-color: transparent;
+}
+
+input[type=checkbox] {
+	display:inline-block;
+	vertical-align: middle;
+	border: 1px solid rgb(41, 27, 163);
+	padding: 0.5em;
+	-webkit-appearance: none;
+    width: 50px;
+    height: 50px;
+}
+
+input[type=checkbox]:checked {
+  background: url(data:image/gif;base64,R0lGODlhAQABAPAAAP///////yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==) no-repeat center center;
+  background-size: 40px 40px;
+}
+
+input[type=checkbox]:focus {
+  outline-color: transparent;
 }
 
 .title {
@@ -296,8 +355,8 @@ input {
 
 #qr-table {
     text-align: center;
-    color: black;
-    background-color: white;
+    color: #0068B3;
+    background-color: rgb(0, 0, 0);
 }
 
 #data {

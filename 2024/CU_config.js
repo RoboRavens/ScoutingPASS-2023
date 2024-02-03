@@ -1,7 +1,7 @@
 var config_data = `
 {
-	"title": "Scouting PASS 2023",
-	"page_title": "Charged Up",
+	"title": "Birds-Eye Scouting - 2024",
+	"page_title": "Crescendo",
 	"checkboxAs": "10",
 	"prematch": [{
 			"name": "Scouter Initals",
@@ -65,9 +65,9 @@ var config_data = `
 			"code": "pr",
 			"type": "radio",
 			"choices": {
-				"cu": "Cube<br>",
-				"co": "Cone<br>",
-				"x": "No Preload"
+				"y": "Yes",
+				"n": "No"
+				
 			},
 			"defaultValue": "x"
 		},
@@ -75,7 +75,7 @@ var config_data = `
 			"name": "Auto Start Position",
 			"code": "as",
 			"type": "clickable_image",
-			"filename": "2023/field_image.png",
+			"filename": "2024/field_image.png",
 			"clickRestriction": "one",
 			"shape": "circle 5  purple  true"
 		}
@@ -85,45 +85,28 @@ var config_data = `
 			"name": "Auto Scoring",
 			"code": "asg",
 			"type": "clickable_image",
-			"filename": "2023/new gridmap2.jpg",
-			"dimensions": "9 4",
+			"filename": "2024/field_image.png",
+			"dimensions": "9 5",
 			"clickRestriction": "onePerBox",
 			"toggleClick": "true",
 			"showFlip": "false",
 			"showUndo": "false",
-			"shape": "circle 12 black purple true"
+			"shape": "circle 10 black lime true"
 		},
-{
-		"name": "Pickup",
-		"code": "apu",
+		{
+		"name": "Scores",
+		"code": "as",
 		"type": "counter"
 		},
-{
+		{
+			"name": "Misses",
+			"code": "am",
+			"type": "counter"
+			},
+		{
 			"name": "Mobility?",
 			"code": "am",
 			"type": "bool"
-		},
-		{
-			"name": "Crossed Charge Station?",
-			"code": "acs",
-			"type": "bool"
-		},
-		{
-			"name": "Crossed Cable?",
-			"code": "ac",
-			"type": "bool"
-		},
-		{
-			"name": "Docked",
-			"code": "ad",
-			"type": "radio",
-			"choices": {
-				"d": "Docked (not Engaged)<br>",
-				"e": "Engaged<br>",
-				"a": "Attempted but failed<br>",
-				"x": "Not attempted"
-			},
-			"defaultValue": "x"
 		}
 	],
 	"teleop": [{
@@ -132,44 +115,20 @@ var config_data = `
 			"type": "cycle"
 		},
 		{
-			"name": "Grid Scoring",
-			"code": "tsg",
-			"type": "clickable_image",
-			"filename": "2023/new gridmap2.jpg",
-			"dimensions": "9 4",
-			"clickRestriction": "onePerBox",
-			"toggleClick": "true",
-			"showFlip": "false",
-			"showUndo": "false",
-			"shape": "circle 12 black purple true",
+			"name": "Shooting Spot",
+			"code": "ss",
+			"type": "field_image",
+			"filename": "2024/field_image.png",
 			"cycleTimer": "tct"
 		},
 		{
-		"name": "Dropped",
-		"code": "drp",
-		"type": "counter"
+			"name": "AmpMissNormal",
+			"code": "amn",
+			"type": "button"
 		},
 		{
-			"name": "Crossed Charge Station?",
-			"code": "tcs",
-			"type": "bool"
-		},
-		{
-			"name": "Final Status",
-			"code": "fs",
-			"type": "radio",
-			"choices": {
-				"p": "Parked<br>",
-				"d": "Docked (Not Engaged)<br>",
-				"e": "Engaged<br>",
-				"a": "Attempted but failed<br>",
-				"x": "Not attempted"
-			},
-			"defaultValue": "x"
-		},
-		{
-			"name": "Total # of alliance<br>robots docked/engaged",
-			"code": "dn",
+			"name": "# of Climbers",
+			"code": "ac",
 			"type": "counter"
 		}
 		
@@ -192,13 +151,13 @@ var config_data = `
 			"type": "bool"
 		},
 		{
-			"name": "Tray Pickup",
-			"code": "tp",
+			"name": "Amp Capability",
+			"code": "ac",
 			"type": "bool"
 		},
 		{
-			"name": "Chute Pickup",
-			"code": "cp",
+			"name": "Source Pickup",
+			"code": "sp",
 			"type": "bool"
 		},
 		{
@@ -207,9 +166,26 @@ var config_data = `
 			"type": "bool"
 		},
 		{
+			"name": "Trap?",
+			"code": "tr",
+			"type": "bool"
+		},
+		{
 			"name": "Tipped",
 			"code": "tip",
 			"type": "bool"
+		},
+		{
+			"name": "Final Status",
+			"code": "fs",
+			"type": "radio",
+			"choices": {
+				"p": "Parked<br>",
+				"c": "Climbed<br>",
+				"f": "Attempted but failed<br>",
+				"x": "Not attempted"
+			},
+			"defaultValue": "x"
 		},
 		{
 			"name": "Comments",
