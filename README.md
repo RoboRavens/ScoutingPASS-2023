@@ -4,7 +4,7 @@
 
 #### A scouting system for FIRST FRC competitions developed by [PWNAGE - Team #2451](https://pwnagerobotics.org).
 
-<a href="https://roboravens.github.io/ScoutingPASS-2023/">Live Demo</a> . <a href="#getting-started">Getting Started</a> . <a href="#faq">FAQ</a>
+<a href="https://roboravens.github.io/ScoutingPASS-2024/">Live Demo</a> . <a href="#getting-started">Getting Started</a> . <a href="#faq">FAQ</a>
 
 ![Stars](https://img.shields.io/github/stars/PWNAGERobotics/ScoutingPASS?style=plastic) ![Forks](https://img.shields.io/github/forks/PWNAGERobotics/ScoutingPASS?style=plastic) ![watchers](https://img.shields.io/github/watchers/PWNAGERobotics/ScoutingPASS?style=plastic)
 <h1></h1>
