@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Koulen&family=Lato&family=Nunito&family=Playfair+Display:ital@1&family=Prata&family=Raleway:ital,wght@1,100&family=Roboto&family=Roboto+Condensed&family=Teko&display=swap');
 
+/* https://uxplanet.org/8-tips-for-dark-theme-design-8dfc2f8f7ab6 */
+
 @font-face {
     font-family: 'Alexis';
     font-style: normal;
@@ -8,12 +10,29 @@
     src: url("../fonts/alexisv3.ttf") format('truetype');
 }
 
+.blurred {
+  filter:grayscale()
+  opacity(.5);
+  pointer-events: none;
+}
+
+.blurredbck {
+    filter: blur(4px); 
+    pointer-events: none;
+}
+
+.blurredLess {
+    filter: blur(1px); 
+    pointer-events: all;
+}
+
+
 html, body{
     height: 100%;
     width: 100%;
     margin: 0;
     padding: 0;
-    color: white;
+    color: #00ABFF;
     background-color: black;
 }
 
@@ -21,34 +40,31 @@ html, body{
 
     font-family : -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
     text-align: center;
-    color: lime;
+    color: #00ABFF;
     font-size: 13px;
     font-style: bold;
-    letter-spacing: 1px;
-    border-width: 4px;
-    border-color: white;
+    letter-spacing: .8px;
+    background-color: #161314;
 }
 
 #postmatch_table {
 
     font-family : -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
     text-align: center;
-    color: lime;
+    color: #00ABFF;
     font-size: 13px;
     font-style: bold;
     letter-spacing: 1px;
-    border-width: 4px;
-    border-color: white;
+    background-color: #161314;
 }
 
 #auton_table, #teleop_table {
     font-family : -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
-    color: lime;
+    color: #00ABFF;
     font-size: 13px;
     font-style: bold;
     letter-spacing: 1px;
-    border-width: 4px;
-    border-color: black;
+    background-color: #161314;
 }
 
 .button {
@@ -56,21 +72,22 @@ html, body{
     font-size: 16px;
 }
 
-
-
-/* Style the Start button */
 /* Style the Start button */
 
-#start_tct {
-  background-color: #4CAF50;
-  color: white;
-  border: black;
-  padding: 20px;
-}
+#start_tct{
+    background-color: rgba(82, 210, 115, 0.3);
+    color: #52d273;
+    border: black;
+    width: 100px;
+    height: 50px;
+    font-weight: bolder;
+    font-size: large;
+  }
+
 
 /* Style the Reset button */
 #clear_tct {
-  background-color: #d9534f;
+  background-color: rgb(37, 99, 235);
   color: white;
   border: black;
   padding: 20px;
@@ -78,41 +95,161 @@ html, body{
 
 /* Style the Pickup button */
 #cycle_tct {
-  background-color: rgb(37, 99, 235);
-  color: white;
-  border: black;
-  padding: 20px;
+    background-color: rgba(70, 188, 222, 0.3);
+    color: #46BCDE;
+    border:#161314;
+    width: 285px;
+    height: 50px;
+    font-weight: bolder;
+    font-size: large;
+    margin-top: 2px;
 }
+
+#amper_tct {
+    background-color: rgba(229, 196, 84, 0.3);
+    color: #E5c454;
+    border:#161314;
+    width: 175px;
+    height: 50px;
+    font-weight: bolder;
+    font-size: large;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+#canvas_ss {
+}
+
+/* style the buttons in the auto cycle timer*/
+#input_act {
+    background-color: rgba(101, 101, 101, 0.3);
+    color: rgba(255, 255, 255, 0.6);
+    border: black;
+    text-align: center;
+    Width: 70px;
+    height: 47px;
+    font-weight: bolder;
+    font-size: medium;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#input_tct {
+    background-color: rgba(101, 101, 101, 0.3);
+    color: rgba(255, 255, 255, 0.6);
+    border: black;
+    text-align: center;
+    Width: 70px;
+    height: 47px;
+    font-weight: bolder;
+    font-size: medium;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#display_act {
+    padding-right: 44px;
+    padding-left: 44px;
+    margin-bottom: 2px;
+}
+
+#display_tct {
+    margin-bottom: 2px;
+    padding-right: 44px;
+    padding-left: 44px;
+}
+
+#display_amn {
+    margin-bottom: 2px;
+    padding-right: 44px;
+    padding-left: 44px;
+}
+
+#cycle_act {
+    background-color: #46BCDE;
+    color: white;
+    border: black;
+    padding: 20px;
+  }
+  #undo_act {
+    background-color: rgba(233, 79, 100, 0.3);
+    color: #e94f64;
+    border: black;
+    width: 100px;
+    height: 50px;
+    font-weight: bolder;
+    font-size: large;
+  }
+
+  
+  #start_act{
+    background-color: rgba(82, 210, 115, 0.3);
+    color: #52d273;
+    border: black;
+    width: 100px;
+    height: 50px;
+    font-weight: bolder;
+    font-size: large;
+  }
+
+  #amped_amn {
+    background-color: rgba(82, 210, 115, 0.3);
+    color: #52d273;
+    border: black;
+    width: 85px;
+    height: 50px;
+    font-weight: bolder;
+    font-size: large;
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+
+  #miss_amn {
+    background-color: rgba(233, 79, 100, 0.3);
+    color: #e94f64;
+    border: black;
+    width: 85px;
+    height: 50px;
+    font-weight: bolder;
+    font-size: large;
+    margin-right: 7px;
+    margin-left: 7px;
+  }
+
+  #normal_amn {
+    background-color: rgba(70, 188, 222, 0.3);
+    color: #46BCDE;
+    border: black;
+    width: 85px;
+    height: 50px;
+    font-weight: bolder;
+    font-size: large;
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+
+  
 
 /* Style the Undo button */
 #undo_tct {
-  background-color: #555555;
-  color: white;
-  border: black;
-  padding: 20px;
-}
+    background-color: rgba(233, 79, 100, 0.3);
+    color: #e94f64;
+    border: black;
+    width: 100px;
+    height: 50px;
+    font-weight: bolder;
+    font-size: large;
+  }
 
-#autonHeader, #teleopHeader1, #teleopHeader2{
-    color: white;
-    border-color: white;
-    border-width: 4px;
-}
-
-#postmatchHeader{
-	color: white;
-    border-width: 4px;
-    border-color: white;
-}
-
-#prematchHeader1, #prematchHeader2{
-    color: white;
-    border-color: white;
-    border-width: 4px;
-}
-
-#qrHeader1, #qrHeader2 {
-    color: black;
-}
+  #feed_tct {
+    background-color: rgba(233, 79, 100, 0.3);
+    color: #e94f64;
+    border: black;
+    width: 100px;
+    height: 50px;
+    font-weight: bolder;
+    font-size: large;
+  }
     
 .field-image {
     margin: 2vw;
@@ -121,6 +258,7 @@ html, body{
 .field-image-src{  
     background-position: center;
     border: 1px solid;
+    border-color: #656565;
 }
 
 .main-panel{
@@ -131,49 +269,41 @@ html, body{
     position: absolute;
     left: 0;
     top: 0;
-    color: white;
-    background-color: black;
+    color: #00ABFF;
     font-family : -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
     text-align: justify;
+    background: black;
 }
 
 #prematch{
     display: table;
 }
 
-#auton{
-}
-
-#teleop{
-}
-
-#postmatch{
-}
-
 #qr-code{
   text-align: center;
+  background-color: #161314;
 }
 
 h1{
     font-family: Alexis;
     text-align: center;
     border-style: groove;
-    border-color: white; 
+    border-color: rgb(0, 0, 0); 
     border-width: 2px;
     font-size: 40px;
-    padding: 10px; 
+    padding: 1px; 
     font-weight: 350;
 }
 
 #page2, #page4 {
-    color: black;
+    color: rgb(0, 0, 0);
 }
 
 h2{
     font-family: Alexis;
     text-align: center;
     font-size: 30px;
-    font-weight: 300;
+    font-weight: 100;
     font-style: italic;
 }
 
@@ -203,50 +333,67 @@ h2{
 #nextButton9, #nextButton10, .clearForm, .submitForm, #displayButton, #copyButton {
     font-family: Alexis; 
     padding: 10px;
-    background-color: lime;
+    background-color: #46BCDE;
     text-decoration: none;
     display: inline-block;
+    color: black;
 }
 #nextButton1{
     font-family: Alexis; 
     padding: 10px;
-    background-color: lime;
+    background-color: #46BCDE;
     text-decoration: none;
     display: inline-block;
     color: black;
 }
 #nextButton2{
-	 font-family: Alexis; 
+	font-family: Alexis; 
     padding: 10px;
-    background-color: lime;
+    background-color: #46BCDE;
     text-decoration: none;
     display: inline-block;
+    color: black;
 }
-#nextButton3, #nextButton4, #nextButton5, #nextButton6, #nextButton7, #nextButton8 {
+#nextButton3, #nextButton4, #nextButton5, #nextButton6, #nextButton7, #nextButton8 #nextButton10{
     font-family: Alexis;
-    background-color: lime; 
+    background-color: #46BCDE; 
     padding: 10px;
     color: black;
 }
 
-.undoButton, .flipButton {
-    font-family: Alexis;
-    background-color: black; 
-    padding: 10px;
-    color: white;
-    margin-left: 20px;
+.undoButton {
+    background-color: rgba(233, 79, 100, 0.3);
+    color: #e94f64;
+    border: black;
+    width: 100px;
+    height: 40px;
+    font-weight: bolder;
+    font-size: large;
+    margin-right: 20px;
+    margin-top: -20px;
+}
+
+.flipButton {
+    background-color: rgba(70, 188, 222, 0.3);
+    color: #46BCDE;
+    border: black;
+    width: 183px;
+    height: 40px;
+    font-weight: bolder;
+    font-size: large;
+    margin-top: -20px;
 }
 
 #prevButton7, #prevButton8, #prevButton9{
     font-family: Alexis;
-    background-color: yellow; 
+    background-color: #46BCDE; 
     padding: 10px;
     color: black;
 }
 
 #prevButton1, #prevButton2, #prevButton3, #prevButton4, #prevButton5, #prevButton6{
     font-family: Alexis;
-    background-color: yellow; 
+    background-color: #46BCDE; 
     padding: 10px;
     color: black;
     
@@ -261,13 +408,13 @@ h2{
 h1 .odd {
     font-family: Alexis;
     text-align: center;
-    color: #0AB4EC;
+    color: rgb(10, 180, 236);
 }
 
 h1 .even {
     font-family: Alexis;
     text-align: center;
-    color: #42B333;
+    color: rgb(37, 99, 235);
 }
 
 table {
@@ -276,12 +423,58 @@ table {
 }
 
 td {
-    padding: 10px 4px;
+
+
+    padding: 7px 4px;
 }
 
 input {
-    font-size: 16px;
+    font-size: 15px;
     font: roboto;
+    font-weight: medium;
+    color: #FFFFFF;
+    opacity: 0.87;
+	text-align: center-left;
+    background-color: #656565;
+}
+
+input[type=radio] {
+	display:inline-block;
+	vertical-align: middle;
+	border: 1px solid #333333;
+	padding: 0.5em;
+	-webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+}
+
+input[type=radio]:checked {
+  background-color: #52d273;
+}
+
+input[type=radio]:focus {
+  outline-color: transparent;
+}
+
+input[type=checkbox] {
+	display:inline-block;
+	vertical-align: middle;
+	padding: 0.5em;
+	-webkit-appearance: none;
+    width: 50px;
+    height: 50px;
+}
+
+input[type=checkbox]:checked {
+  background-color: #52d273;
+  background-size: 40px 40px;
+  -ms-transform: scaleX(-5) rotate(-5deg); /* IE 9 */
+  -webkit-transform: scaleX(-5) rotate(-5deg); /* Chrome, Safari, Opera */
+  transform: scaleX(-1) rotate(-5deg);
+}
+
+input[type=checkbox]:focus {
+  outline-color: transparent;
 }
 
 .title {
@@ -295,9 +488,11 @@ input {
 }
 
 #qr-table {
+    background-color: #161314;
     text-align: center;
-    color: black;
-    background-color: white;
+    color: #0068B3;
+  
+   
 }
 
 #data {

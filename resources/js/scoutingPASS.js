@@ -44,6 +44,26 @@ function addTimer(table, idx, name, data) {
   cell = row.insertCell(0);
   cell.setAttribute("colspan", 2);
   cell.setAttribute("style", "text-align: center;");
+
+  var inp = document.createElement("input");
+  if (data.type == 'timer') {
+    inp.classList.add("timer");
+  } else {
+    inp.classList.add("cycle");
+  }
+  inp.setAttribute("id", "input_" + data.code);
+  inp.setAttribute("type", "text");
+  if (enableGoogleSheets && data.hasOwnProperty('gsCol')) {
+    inp.setAttribute("name", data.gsCol);
+  } else {
+    inp.setAttribute("name", data.code);
+  }
+  //inp.setAttribute("style", "background-color: black; color: white;border: none; text-align: center;");
+  inp.setAttribute("disabled", "");
+  inp.setAttribute("value", 0);
+  inp.setAttribute("size", 7);
+  inp.setAttribute("maxLength", 7);
+  
   if (data.type == 'cycle') {
     var ct = document.createElement('input');
     ct.setAttribute("type", "hidden");
@@ -60,25 +80,6 @@ function addTimer(table, idx, name, data) {
     cell.appendChild(lineBreak);
   }
 
-  var inp = document.createElement("input");
-  if (data.type == 'timer') {
-    inp.classList.add("timer");
-  } else {
-    inp.classList.add("cycle");
-  }
-  inp.setAttribute("id", "input_" + data.code);
-  inp.setAttribute("type", "text");
-  if (enableGoogleSheets && data.hasOwnProperty('gsCol')) {
-    inp.setAttribute("name", data.gsCol);
-  } else {
-    inp.setAttribute("name", data.code);
-  }
-  inp.setAttribute("style", "background-color: black; color: white;border: none; text-align: center;");
-  inp.setAttribute("disabled", "");
-  inp.setAttribute("value", 0);
-  inp.setAttribute("size", 7);
-  inp.setAttribute("maxLength", 7);
-  
   if(data.code == "ddt") {
   var button1 = document.createElement("input");
   button1.setAttribute("id", "start_" + data.code);
@@ -136,38 +137,94 @@ function addTimer(table, idx, name, data) {
   cell.appendChild(button4);
   }
    
+
+  
 if(data.code == "tct") {
-	var button1 = document.createElement("input");
+
+  var button1 = document.createElement("input");
+  button1.setAttribute("id", "start_" + data.code);
+  button1.setAttribute("type", "button");
+  button1.setAttribute("onclick", "timer(this.parentElement); blurPickup()");
+  button1.setAttribute("value", "Start");
+  cell.appendChild(button1);
+  cell.appendChild(inp);
+  
+  var button3 = document.createElement("input");
+  button3.setAttribute("id", "undo_" + data.code);
+  button3.setAttribute("type", "button");
+  button3.setAttribute("onclick", "undoCycle(this.parentElement)");
+  button3.setAttribute("value", "Undo");
+
+  cell.appendChild(button3);
+
+  var button2 = document.createElement("input");
+  button2.setAttribute("id", "cycle_" + data.code);
+  button2.setAttribute("type", "button");
+  button2.setAttribute("onclick", "newCycle(this.parentElement); blurCanvas(); blurPickup()");
+  button2.setAttribute("value", "Pickup");
+  cell.appendChild(button2);
+  cell.appendChild(button2);
+  cell.appendChild(button2);
+
+  //var lineBreak = document.createElement("br");
+  //cell.appendChild(lineBreak);
+  
+  
+  
+  var lineBreak = document.createElement("br");
+
+
+  var ampButton = document.createElement("input");
+  ampButton.setAttribute("id", "amper_" + data.code);
+  ampButton.setAttribute("type", "button");
+  ampButton.setAttribute("onclick", "newCycle(this.parentElement); addShotTypeAmpScore(this.parentElement); addXToFinalArray(); blurCanvas(); blurPickup()");
+  ampButton.setAttribute("value", "Scored in Amp");
+  cell.appendChild(ampButton);
+  var feedButton = document.createElement("input");
+  feedButton.setAttribute("id", "feed_" + data.code);
+  feedButton.setAttribute("type", "button");
+  feedButton.setAttribute("onclick", "newCycle(this.parentElement); addTypeFeed(this.parentElement); addFToFinalArray(); blurCanvas(); blurPickup()");
+  feedButton.setAttribute("value", "Feed");
+  cell.appendChild(feedButton);
+}
+if(data.code == "act") {
+  var button1 = document.createElement("input");
   button1.setAttribute("id", "start_" + data.code);
   button1.setAttribute("type", "button");
   button1.setAttribute("onclick", "timer(this.parentElement)");
   button1.setAttribute("value", "Start");
+  //button1.setAttribute('style', "Background-color: #4f884f");	
   cell.appendChild(button1);
   cell.appendChild(inp);
-  var button2 = document.createElement("input");
-  button2.setAttribute("id", "clear_" + data.code);
+  
+  //THIS BUTTON DOES NOTHING, IF YOU DELETE IT, THE FIELD CLICK WILL LAG REALLY BAD
+  // DO NOT DELETE > button2.setAttribute("type", "hidden");
+  
+  var button2 = document.createElement("input"); 
+  button2.setAttribute("id", "cycle_" + data.code);
   button2.setAttribute("type", "button");
-  button2.setAttribute("onclick", "resetTimer(this.parentElement)");
-  button2.setAttribute("value", "Reset");
+  button2.setAttribute("onclick", "newCycle(this.parentElement)");
+  button2.setAttribute("value", "Pickup");
+  button2.setAttribute("type", "hidden");
   cell.appendChild(button2);
+  cell.appendChild(button2);
+  cell.appendChild(button2);
+  
+  var button3 = document.createElement("input");
+  button3.setAttribute("id", "undo_" + data.code);
+  button3.setAttribute("type", "button");
+  button3.setAttribute("onclick", "undoCycle(this.parentElement)");
+  button3.setAttribute("value", "Undo");
+  //button3.setAttribute('style', "Background-color: #D23232");
+  cell.appendChild(button3);
+  
+  
   var lineBreak = document.createElement("br");
   cell.appendChild(lineBreak);
-   var button3 = document.createElement("input");
-    button3.setAttribute("id", "cycle_" + data.code);
-    button3.setAttribute("type", "button");
-    button3.setAttribute("onclick", "newCycle(this.parentElement)");
-    button3.setAttribute("value", "Pickup");
-    cell.appendChild(button3);
-    cell.appendChild(button3);
-	var button4 = document.createElement("input");
-    button4.setAttribute("id", "undo_" + data.code);
-    button4.setAttribute("type", "button");
-    button4.setAttribute("onclick", "undoCycle(this.parentElement)");
-    button4.setAttribute("value", "Feed");
-    button4.setAttribute('style', "margin-left: 20px;");
-    cell.appendChild(button4);
-    
+  
 }
+
+
 
   idx += 1
   row = table.insertRow(idx);
@@ -196,6 +253,7 @@ if(data.code == "tct") {
 
   return idx + 1;
 }
+
 function addCounter(table, idx, name, data) {
   var row = table.insertRow(idx);
   var cell1 = row.insertCell(0);
@@ -205,7 +263,7 @@ function addCounter(table, idx, name, data) {
     return idx + 1;
   }
   var cell2 = row.insertCell(1);
-  cell1.innerHTML = name + '&nbsp;';
+  cell1.innerHTML = name;
   if (data.hasOwnProperty('tooltip')) {
     cell1.setAttribute("title", data.tooltip);
   }
@@ -215,6 +273,8 @@ function addCounter(table, idx, name, data) {
   button1.setAttribute("type", "button");
   button1.setAttribute("onclick", "counter(this.parentElement, -1)");
   button1.setAttribute("value", "-");
+  button1.setAttribute("style", "background-color: rgba(233, 79, 100, 0.3); color: #e94f64; border: black; width: 55px; height: 75px; font-weight: bolder; font-size: large;");
+  
   cell2.appendChild(button1);
 
   var inp = document.createElement("input");
@@ -226,7 +286,7 @@ function addCounter(table, idx, name, data) {
   } else {
     inp.setAttribute("name", data.code);
   }
-  inp.setAttribute("style", "background-color: black; color: white;border: none; text-align: center;");
+  inp.setAttribute("style", "background-color: rgba(101, 101, 101, 0.3); color: rgba(255, 255, 255, 0.6); border: black; text-align: center; Width: 75px; height: 74px; font-weight: bolder; font-size: medium;");
   inp.setAttribute("disabled", "");
   inp.setAttribute("value", 0);
   inp.setAttribute("size", 2);
@@ -237,6 +297,7 @@ function addCounter(table, idx, name, data) {
   button2.setAttribute("type", "button");
   button2.setAttribute("onclick", "counter(this.parentElement, 1)");
   button2.setAttribute("value", "+");
+  button2.setAttribute("style", "background-color: rgba(82, 210, 115, 0.3); color: #52d273; border: black; width: 55px; height: 75px; font-weight: bolder; font-size: large");
   cell2.appendChild(button2);
 
   if (data.hasOwnProperty('defaultValue')) {
@@ -253,7 +314,7 @@ function addCounter(table, idx, name, data) {
 function addClickableImage(table, idx, name, data) {
   var row = table.insertRow(idx);
   var cell = row.insertCell(0);
-  cell.setAttribute("colspan", 2);
+  cell.setAttribute("colspan", 3);
   cell.setAttribute("style", "text-align: center;");
   cell.classList.add("title");
   if (!data.hasOwnProperty('code')) {
@@ -265,52 +326,7 @@ function addClickableImage(table, idx, name, data) {
     cell.setAttribute("title", data.tooltip);
   }
 
-  let showFlip = true;
-  if (data.hasOwnProperty('showFlip')) {
-    if (data.showFlip.toLowerCase() == 'false') {
-      showFlip = false;
-    }
-  }
-
-  let showUndo = true;
-  if (data.hasOwnProperty('showUndo')) {
-    if (data.showUndo.toLowerCase() == 'false') {
-      showUndo = false;
-    }
-  }
-
-  if (showFlip || showUndo) {
-    idx += 1
-    row = table.insertRow(idx);
-    cell = row.insertCell(0);
-    cell.setAttribute("colspan", 2);
-    cell.setAttribute("style", "text-align: center;");
-
-    if (showUndo) {
-      // Undo button
-      let undoButton = document.createElement("input");
-      undoButton.setAttribute("type", "button");
-      undoButton.setAttribute("onclick", "undo(this.parentElement)");
-      undoButton.setAttribute("value", "Undo");
-      undoButton.setAttribute("id", "undo_" + data.code);
-      undoButton.setAttribute("class", "undoButton");
-      cell.appendChild(undoButton);
-    }
-
-    if (showFlip) {
-      // Flip button
-      let flipButton = document.createElement("input");
-      flipButton.setAttribute("type", "button");
-      flipButton.setAttribute("onclick", "flip(this.parentElement)");
-      flipButton.setAttribute("value", "Flip Image");
-      flipButton.setAttribute("id", "flip_" + data.code);
-      flipButton.setAttribute("class", "flipButton");
-      if (showUndo) {
-        flipButton.setAttribute("margin-left", '8px');
-      }
-      cell.appendChild(flipButton);
-    }
-  }
+  
 
   idx += 1;
   row = table.insertRow(idx);
@@ -319,7 +335,8 @@ function addClickableImage(table, idx, name, data) {
   cell.setAttribute("style", "text-align: center;");
   var canvas = document.createElement('canvas');
   //canvas.onclick = onFieldClick;
-  canvas.setAttribute("onclick", "onFieldClick(event)");
+
+  canvas.setAttribute("onclick", "onFieldClick(event); blurAmn(); blurPickup()");
   canvas.setAttribute("class", "field-image-src");
   canvas.setAttribute("id", "canvas_" + data.code);
   canvas.innerHTML = "No canvas support";
@@ -421,7 +438,138 @@ function addClickableImage(table, idx, name, data) {
   img.setAttribute("hidden", "");
   cell.appendChild(img);
 
+  let showFlip = true;
+  if (data.hasOwnProperty('showFlip')) {
+    if (data.showFlip.toLowerCase() == 'false') {
+      showFlip = false;
+    }
+  }
+
+  let showUndo = true;
+  if (data.hasOwnProperty('showUndo')) {
+    if (data.showUndo.toLowerCase() == 'false') {
+      showUndo = false;
+    }
+  }
+
+  if (showFlip || showUndo) {
+    idx += 1
+    row = table.insertRow(idx);
+    cell = row.insertCell(0);
+    cell.setAttribute("colspan", 2);
+    cell.setAttribute("style", "text-align: center;");
+
+    if (showUndo) {
+      // Undo button
+      let undoButton = document.createElement("input");
+      undoButton.setAttribute("type", "button");
+      undoButton.setAttribute("onclick", "undo(this.parentElement); blurCanvas(); blurAmn()");
+      undoButton.setAttribute("value", "Undo");
+      undoButton.setAttribute("id", "undo_" + data.code);
+      undoButton.setAttribute("class", "undoButton");
+      cell.appendChild(undoButton);
+    }
+
+    if (showFlip) {
+      // Flip button
+      let flipButton = document.createElement("input");
+      flipButton.setAttribute("type", "button");
+      flipButton.setAttribute("onclick", "flip(this.parentElement)");
+      flipButton.setAttribute("value", "Flip Image");
+      flipButton.setAttribute("id", "flip_" + data.code);
+      flipButton.setAttribute("class", "flipButton");
+      if (showUndo) {
+        flipButton.setAttribute("margin-left", '8px');
+      }
+      cell.appendChild(flipButton);
+    }
+  }
+
   return idx + 1
+}
+
+function addButton(table, idx, name, data) {
+  
+  //SETUP CODE
+
+  var row = table.insertRow(idx);
+  var cell1 = row.insertCell(0);
+  cell1.setAttribute("colspan", 2);
+  cell1.setAttribute("style", "text-align: center;");
+  cell1.classList.add("title");
+  if (!data.hasOwnProperty('code')) {
+    cell1.innerHTML = `Error: No code specified for ${name}`;
+    return idx + 1;
+  }
+  cell1.innerHTML = name;
+  if (data.hasOwnProperty('tooltip')) {
+    cell1.setAttribute("title", data.tooltip);
+  }
+
+  idx += 1
+  row = table.insertRow(idx);
+  cell = row.insertCell(0);
+  cell.setAttribute("colspan", 2);
+  cell.setAttribute("style", "text-align: center;");
+  
+  if (data.type == 'button') {
+    var ct = document.createElement('input');
+    ct.setAttribute("type", "hidden");
+    ct.setAttribute("id", "input_" + data.code);
+    ct.setAttribute("value", "[]");
+    ct.setAttribute("class", "buttonClass");
+    cell.appendChild(ct);
+    ct = document.createElement('input');
+    ct.setAttribute("type", "text");
+    ct.setAttribute("id", "display_" + data.code);
+    ct.setAttribute("value", "");
+    ct.setAttribute("disabled", "");
+    ct.setAttribute("class", "buttonClass");
+    cell.appendChild(ct);
+    var lineBreak = document.createElement("br");
+    cell.appendChild(lineBreak);
+  }
+
+
+  var inp = document.createElement("input");
+  inp.classList.add("button");
+  inp.setAttribute("id", "input_" + data.code);
+  inp.setAttribute("type", "text");
+  if (enableGoogleSheets && data.hasOwnProperty('gsCol')) {
+    inp.setAttribute("name", data.gsCol);
+  } else {
+    inp.setAttribute("name", data.code);
+  }
+  inp.setAttribute("style", "background-color: black; color: white;border: none; text-align: center;");
+  inp.setAttribute("disabled", "");
+  inp.setAttribute("value", 0);
+  inp.setAttribute("size", 7);
+  inp.setAttribute("maxLength", 7);
+
+
+  //BUTTONS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  
+  var button3 = document.createElement("input");
+  button3.setAttribute("id", "normal_" + data.code);
+  button3.setAttribute("type", "button");
+  button3.setAttribute("onclick", "addShotTypeNormal(this.parentElement); blurAmn(); blurPickup()");
+  button3.setAttribute("value", "Normal");
+  cell.appendChild(button3);
+
+  var button1 = document.createElement("input");
+  button1.setAttribute("id", "amped_" + data.code);
+  button1.setAttribute("type", "button");
+  button1.setAttribute("onclick", "addShotTypeAmped(this.parentElement); blurAmn(); blurPickup()");
+  button1.setAttribute("value", "Amped");
+  cell.appendChild(button1);
+
+  var button2 = document.createElement("input");
+  button2.setAttribute("id", "miss_" + data.code);
+  button2.setAttribute("type", "button");
+  button2.setAttribute("onclick", "addShotTypeMiss(this.parentElement); blurAmn(); blurPickup()");
+  button2.setAttribute("value", "Miss");
+  cell.appendChild(button2);
+  
 }
 
 function addText(table, idx, name, data) {
@@ -621,7 +769,7 @@ function addCheckbox(table, idx, name, data) {
   cell2.appendChild(inp);
 
   if (data.type == 'bool') {
-    cell2.innerHTML += "(checked = Yes)";
+    cell2.innerHTML += "   (checked = Yes)";
   }
 
   if (data.hasOwnProperty('defaultValue')) {
@@ -678,6 +826,8 @@ function addElement(table, idx, data) {
     idx = addCheckbox(table, idx, name, data);
   } else if (data.type == 'counter') {
     idx = addCounter(table, idx, name, data);
+  } else if (data.type == 'button') {
+    idx = addButton(table, idx, name, data);
   } else if ((data.type == 'timer') ||
 	     (data.type == 'cycle')) {
     idx = addTimer(table, idx, name, data);
@@ -942,6 +1092,8 @@ function getData(useStr) {
 	if (e.className == "cycle") {
 	  e = document.getElementById("cycletime_" + code)
 	}
+
+
 	let val = e.value.split(';').join('-').replace(/"/g,'')
         if (useStr) {
           str = str + code + '=' + val
@@ -950,7 +1102,10 @@ function getData(useStr) {
         }
       }
     }
+  
+    
   }
+  
   if (useStr) {
     return str
   } else {
@@ -969,7 +1124,6 @@ function updateQRHeader() {
 
   document.getElementById("display_qr-info").textContent = str;
 }
-
 
 function qr_regenerate() {
   // Validate required pre-match date (event, match, level, robot, scouter)
@@ -1020,6 +1174,16 @@ function clearForm() {
   for (e of inputs) {
     code = e.id.substring(6)
 
+    if (e.className == "buttonClass") {
+      document.getElementById("input_amn").value = "[]"
+      document.getElementById("display_amn").value = ""
+    }
+
+    if (e.className == "buttonClass") {
+      e.value = "[]";
+      continue;
+    }
+
     // Don't clear key fields
     if (code == "m") continue
     if (code.substring(0, 2) == "r_") continue
@@ -1031,7 +1195,7 @@ function clearForm() {
       e.value = "[]";
       continue;
     }
-
+if (code =="co")
     radio = code.indexOf("_")
     if (radio > -1) {
       var baseCode = code.substr(0, radio)
@@ -1068,6 +1232,7 @@ function clearForm() {
 	      document.getElementById("cycletime_" + code).value = "[]"
 	      document.getElementById("display_" + code).value = ""
 	    }
+      
 	  }
 	} else {
           e.value = ""
@@ -1099,10 +1264,10 @@ function moveTouch(e) {
   // sliding horizontally
   if (diffX / screen.width > xThreshold) {
     // swiped left
-    swipePage(1);
+    // swipePage(1);
   } else if (diffX / screen.width < -xThreshold) {
     // swiped right
-    swipePage(-1);
+    // swipePage(-1);
   }
   initialX = null;
 };
@@ -1230,11 +1395,41 @@ function onFieldClick(event) {
     }
     // If associated with cycleTimer - send New Cycle EVENT
     if (cycleTimer != null) {
-      document.getElementById("cycle_" + cycleTimer.value).click();
+      var element = document.getElementById("cycle_" + cycleTimer.value);
+
+      if (element) {
+          var clickEvent = document.createEvent('MouseEvents');
+          clickEvent.initEvent('click', true, true);
+          element.dispatchEvent(clickEvent);
+      }
     }
   }
 
   drawFields()
+}
+
+function addXToFinalArray() {
+  // Get the current value of the input field and parse it as an array
+  var currentValue = JSON.parse(document.getElementById("input_ss").value);
+
+  // Add "x" to the array
+  currentValue.push("x");
+
+  // Update the input field with the modified array
+  document.getElementById("input_ss").value = JSON.stringify(currentValue);
+
+}
+
+function addFToFinalArray() {
+  // Get the current value of the input field and parse it as an array
+  var currentValue = JSON.parse(document.getElementById("input_ss").value);
+
+  // Add "x" to the array
+  currentValue.push("F");
+
+  // Update the input field with the modified array
+  document.getElementById("input_ss").value = JSON.stringify(currentValue);
+
 }
 
 function findMiddleOfBox(boxNum, width, height, resX, resY) {
@@ -1341,6 +1536,74 @@ function counter(element, step) {
   } else {
     ctr.value = 0;
   }
+}
+
+function addShotTypeAmped(event)
+{
+
+  //this line check cycleTime value
+  let base = "_amn"
+  let cycleInput = document.getElementById("input" + base);
+  var tempValue = Array.from(JSON.parse(cycleInput.value));
+  tempValue.push("A");
+  cycleInput.value = JSON.stringify(tempValue);
+  let d = document.getElementById("display" + base);
+  d.value = cycleInput.value.replace(/\"/g,'').replace(/\[/g, '').replace(/\]/g, '').replace(/,/g, ', ');
+  
+}
+function addTypeFeed(event)
+{
+
+  //this line check cycleTime value
+  let base = "_amn"
+  let cycleInput = document.getElementById("input" + base);
+  var tempValue = Array.from(JSON.parse(cycleInput.value));
+  tempValue.push("F");
+  cycleInput.value = JSON.stringify(tempValue);
+  let d = document.getElementById("display" + base);
+  d.value = cycleInput.value.replace(/\"/g,'').replace(/\[/g, '').replace(/\]/g, '').replace(/,/g, ', ');
+  
+}
+
+function addShotTypeMiss(event)
+{
+
+  //this line check cycleTime value
+  let base = "_amn"
+  let cycleInput = document.getElementById("input" + base);
+  var tempValue = Array.from(JSON.parse(cycleInput.value));
+  tempValue.push("M");
+  cycleInput.value = JSON.stringify(tempValue);
+  let d = document.getElementById("display" + base);
+  d.value = cycleInput.value.replace(/\"/g,'').replace(/\[/g, '').replace(/\]/g, '').replace(/,/g, ', ');
+  
+}
+
+function addShotTypeNormal(event)
+{
+
+  //this line check cycleTime value
+  let base = "_amn"
+  let cycleInput = document.getElementById("input" + base);
+  var tempValue = Array.from(JSON.parse(cycleInput.value));
+  tempValue.push("N");
+  cycleInput.value = JSON.stringify(tempValue);
+  let d = document.getElementById("display" + base);
+  d.value = cycleInput.value.replace(/\"/g,'').replace(/\[/g, '').replace(/\]/g, '').replace(/,/g, ', ');
+  
+}
+
+function addShotTypeAmpScore(event)
+{
+
+  //this line check cycleTime value
+  let base = "_amn"
+  let cycleInput = document.getElementById("input" + base);
+  var tempValue = Array.from(JSON.parse(cycleInput.value));
+  tempValue.push("x");
+  cycleInput.value = JSON.stringify(tempValue);
+  let d = document.getElementById("display" + base);
+  d.value = cycleInput.value.replace(/\"/g,'').replace(/\[/g, '').replace(/\]/g, '').replace(/,/g, ', ');
 }
 
 function newCycle(event)
@@ -1459,7 +1722,82 @@ function copyData(){
   document.getElementById('copyButton').setAttribute('value','Copied');
 }
 
+function blurCanvas() {
+  var canvas = document.getElementById('canvas_ss');
+  var amper = document.getElementById('amper_tct');
+  var undo2 = document.getElementById('undo_ss');
+  var flip = document.getElementById('flip_ss');
+  var feed = document.getElementById('feed_tct');
+  
+  canvas.classList.toggle('blurred');
+  amper.classList.toggle('blurred');
+  feed.classList.toggle('blurred');
+  undo2.classList.toggle('blurred');
+  flip.classList.toggle('blurred');
+
+}
+
+function blurAmn() {
+  var amped = document.getElementById('amped_amn');
+  var miss = document.getElementById('miss_amn');
+  var normal = document.getElementById('normal_amn');
+  var display = document.getElementById('display_amn');
+  
+  amped.classList.toggle('blurred');
+  miss.classList.toggle('blurred');
+  normal.classList.toggle('blurred');
+  display.classList.toggle('blurred');
+}
+
+function unblurAmn() {
+  var amped = document.getElementById('amped_amn');
+  var miss = document.getElementById('miss_amn');
+  //var normal = document.getElementById('normal_amn');
+  var display = document.getElementById('display_amn');
+  
+  amped.classList.add('blurred');
+  miss.classList.add('blurred');
+  //normal.classList.toggle('blurred');
+  display.classList.add('blurred');
+}
+
+function blurPickup() {
+  var cycle = document.getElementById('cycle_tct');
+  var undo = document.getElementById('undo_tct');
+  cycle.classList.toggle('blurred');
+  undo.classList.toggle('blurred');
+}
+
+function blurAll() {
+  var amped = document.getElementById('amped_amn');
+  var miss = document.getElementById('miss_amn');
+  var normal = document.getElementById('normal_amn');
+  var display = document.getElementById('display_amn');
+  amped.classList.add('blurred');
+  miss.classList.add('blurred');
+  normal.classList.add('blurred');
+  display.classList.add('blurred');  
+
+  var canvas = document.getElementById('canvas_ss');
+  var amper = document.getElementById('amper_tct');
+  var feed = document.getElementById('feed_tct');
+  var undo2 = document.getElementById('undo_ss');
+  var flip = document.getElementById('flip_ss');
+  canvas.classList.add('blurred');
+  amper.classList.add('blurred');
+  undo2.classList.add('blurred');
+  flip.classList.add('blurred');
+  feed.classList.add('blurred');
+  
+  var cycle = document.getElementById('cycle_tct');
+  var undo = document.getElementById('undo_tct');
+  cycle.classList.add('blurred');
+  undo.classList.add('blurred');  
+
+}
+
 window.onload = function () {
+  
   var ret = configure();
   if (ret != -1) {
     var ec = document.getElementById("input_e").value;
@@ -1471,4 +1809,6 @@ window.onload = function () {
       setUpGoogleSheets();
     }
   }
+
+  blurAll()
 };
